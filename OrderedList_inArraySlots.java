@@ -17,8 +17,11 @@ public class OrderedList_inArraySlots
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // violates the directions for this hw
-        
+      list_iAS = unordered;
+      for(int element = 0; element < list_iAS.size(); element++) {
+        list_iAS.set(element, list_iAS.set(champIndex(element, list_iAS), list_iAS.get(element)));
+      }
+
         System.out.println( 
             "Change this to report on progress."
           + System.lineSeparator()
@@ -30,10 +33,17 @@ public class OrderedList_inArraySlots
     /** 
       helper function for constructor
       Write good English here, reflecting good thinking.
-      @return ??
+      @return the index of the element with the smallest value in a list
      */
-     private int champIndex() {
-        return 0;  // replace this line
+     private int champIndex(int startIndex, ArrayList<Integer> list) {
+      int champ = startIndex;
+      for(int challenger = startIndex + 1;
+          challenger < list.size();
+          challenger++) {
+        if (list.get(challenger) < list.get(champ))
+          champ = challenger;
+      }
+      return champ;  // replace this line
      }
 
 
